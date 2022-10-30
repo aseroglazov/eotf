@@ -14,9 +14,9 @@ class RubberChain(AbstractGestureChain):
         ]
     max_empty_gestures = 10
 
-    def __init__(self, hand_gesture: AbstractHandGesture) -> None:
-        self.received_gestures = []
-        self.received_gestures.append(hand_gesture)
+    def __init__(self, hand) -> None:
+        self.received_hands = []
+        self.received_hands.append(hand)
         self.quantity_of_empty_gestures = 0
         self.abort_sequence = False
 
@@ -29,18 +29,18 @@ class RubberChain(AbstractGestureChain):
         return type(hand_gesture) is cls._chain[0]
 
     def is_completed(self) -> bool:
-        return len(self.received_gestures) == len(self.chain)
+        return len(self.received_hands) == len(self.chain)
 
-    def send(self, hand_gesture: AbstractHandGesture) -> None:
+    def send(self, hand) -> None:
         updated = False
         consumed_exclusively = False
         index = 0
-        if len(self.received_gestures):
-            index = len(self.received_gestures) - 1
+        if len(self.received_hands):
+            index = len(self.received_hands) - 1
 
         if len(self.chain) > index:
-            if type(hand_gesture) is self.chain[index]:
-                self.received_gestures.append(hand_gesture)
+            if type(hand.gesture) is self.chain[index]:
+                self.received_hands.append(hand)
                 updated = True
                 consumed_exclusively = False
                 self.quantity_of_empty_gestures = 0
@@ -53,8 +53,8 @@ class RubberChain(AbstractGestureChain):
 
     @property
     def result(self):
-        start_point = self.received_gestures[0].hand.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP]
-        end_point = self.received_gestures[1].hand.landmark[mp_hands.HandLandmark.WRIST]
+        start_point = self.received_hands[0].index_finger.TIP
+        end_point = self.received_hands[1].landmarks.landmark[mp_hands.HandLandmark.WRIST]
         return EmptyRectangle(start_point, end_point)
 
     def is_broken(self):

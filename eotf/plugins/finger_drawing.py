@@ -7,14 +7,15 @@ from ..settings import IMAGE_WIDTH, IMAGE_HEIGHT
 from ..gesture_chains import get_all_chain_types
 
 
+ALL_CHAIN_TYPES = get_all_chain_types()
+
+
 class FingerDrawingPlugin(BasePlugin):
     def __init__(self):
         self._clean_state()
 
     def _clean_state(self):
         self.figures_on_canvas = []
-        # TODO: check why I use all chain types here
-        self.possible_gesture_chains = get_all_chain_types()
         self.active_chains = {
             'right': [],
             'left': []
@@ -32,16 +33,16 @@ class FingerDrawingPlugin(BasePlugin):
     def _process(self, hand):
         consumed_exclusively = False
         for chain in self.active_chains[hand.side]:
-            result = chain.send(hand.gesture)
+            result = chain.send(hand)
             if result.updated:
                 consumed_exclusively = result.consumed_exclusively
                 break
 
         if not consumed_exclusively:
-            for chain in self.possible_gesture_chains:
+            for chain in ALL_CHAIN_TYPES:
                 if not chain.starts_with(hand.gesture):
                     continue
-                self.active_chains[hand.side].append(chain(hand.gesture))
+                self.active_chains[hand.side].append(chain(hand))
 
         completed_chains = []
         for index, chain in enumerate(self.active_chains[hand.side]):

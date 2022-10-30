@@ -9,18 +9,12 @@ class AbstractHandGesture(ABC):
 
 
 class UnknownHandGesture(AbstractHandGesture):
-    def __init__(self, hand):
-        self.hand = hand
-
     @classmethod
     def is_shown(cls, hand) -> bool:
         return False
 
 
 class NoHandFound(AbstractHandGesture):
-    def __init__(self, hand=None):
-        self.hand = hand
-
     @classmethod
     def is_shown(cls, hand=None) -> bool:
         return False
