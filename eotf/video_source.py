@@ -1,6 +1,7 @@
 import cv2
 
-from eotf.settings import IMAGE_HEIGHT, \
+from eotf.settings import \
+    IMAGE_HEIGHT, \
     IMAGE_WIDTH
 
 

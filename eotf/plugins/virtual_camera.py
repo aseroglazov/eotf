@@ -1,7 +1,7 @@
 import pyvirtualcam
 
 from .base import BasePlugin
-from ..settings import IMAGE_WIDTH, IMAGE_HEIGHT, VIDEO_FPS
+from eotf.settings import IMAGE_WIDTH, IMAGE_HEIGHT, VIDEO_FPS
 
 
 class VirtualCameraPlugin(BasePlugin):

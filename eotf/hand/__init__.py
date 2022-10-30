@@ -5,7 +5,7 @@ from .base import \
     NoHandFound
 from .handbreadth import HandbreadthGesture
 from .indexfinger import IndexFingerGesture
-from ..helpers import get_inheritors
+from eotf.helpers import get_inheritors
 
 
 FINGER_OFFSET = {

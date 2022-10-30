@@ -1,5 +1,4 @@
 import cv2
-
 from abc import abstractmethod, ABC
 
 from eotf.helpers import Point3D, Point2D, scale_coordinates_to_full_image

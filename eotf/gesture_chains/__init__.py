@@ -1,8 +1,8 @@
 from .base import AbstractGestureChain
 from .draw_line import DrawLineChain
 from .rubber import RubberChain
-from ..helpers import get_inheritors
-from ..hand import AbstractHandGesture
+from eotf.helpers import get_inheritors
+from eotf.hand import AbstractHandGesture
 
 
 def get_all_chain_types() -> list[AbstractGestureChain]:

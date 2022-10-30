@@ -1,10 +1,15 @@
 import mediapipe as mp
 
-mp_hands = mp.solutions.hands
+from .base import \
+    AbstractGestureChain, \
+    UpdateOfGestureChain
+from eotf.hand import \
+    AbstractHandGesture, \
+    HandbreadthGesture
+from eotf.figures import EmptyRectangle
 
-from .base import AbstractGestureChain, UpdateOfGestureChain
-from ..hand import AbstractHandGesture, HandbreadthGesture
-from ..figures import EmptyRectangle
+
+mp_hands = mp.solutions.hands
 
 
 class RubberChain(AbstractGestureChain):

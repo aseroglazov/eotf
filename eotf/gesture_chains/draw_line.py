@@ -1,8 +1,12 @@
 import mediapipe as mp
 
-from .base import AbstractGestureChain, UpdateOfGestureChain
-from ..figures import Line
-from ..hand import AbstractHandGesture, IndexFingerGesture
+from .base import \
+    AbstractGestureChain, \
+    UpdateOfGestureChain
+from eotf.figures import Line
+from eotf.hand import \
+    AbstractHandGesture, \
+    IndexFingerGesture
 
 
 mp_hands = mp.solutions.hands

@@ -2,6 +2,7 @@ import mediapipe as mp
 
 from .base import AbstractHandGesture
 
+
 mp_hands = mp.solutions.hands
 
 

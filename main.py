@@ -1,6 +1,9 @@
 import cv2
 
-from eotf import VideoSource, PluginChain, Scene
+from eotf import \
+    VideoSource, \
+    PluginChain, \
+    Scene
 
 
 def main(send_to_virtual_camera: bool, visualize_hands: bool):
@@ -13,4 +16,4 @@ def main(send_to_virtual_camera: bool, visualize_hands: bool):
 
 
 if __name__ == '__main__':
-    main(send_to_virtual_camera=True, visualize_hands=True)
+    main(send_to_virtual_camera=False, visualize_hands=True)

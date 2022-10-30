@@ -2,7 +2,7 @@ import cv2
 import mediapipe as mp
 
 from .base import BasePlugin
-from ..hand import Hand
+from eotf.hand import Hand
 
 
 class HandDetectionPlugin(BasePlugin):

@@ -2,9 +2,9 @@ import cv2
 import numpy
 
 from .base import BasePlugin
-from ..hand import Hand
-from ..settings import IMAGE_WIDTH, IMAGE_HEIGHT
-from ..gesture_chains import get_all_chain_types
+from eotf.hand import Hand
+from eotf.settings import IMAGE_WIDTH, IMAGE_HEIGHT
+from eotf.gesture_chains import get_all_chain_types
 
 
 ALL_CHAIN_TYPES = get_all_chain_types()

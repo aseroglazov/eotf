@@ -1,7 +1,7 @@
 import mediapipe as mp
 
 from .base import BasePlugin
-from ..hand import Hand
+from eotf.hand import Hand
 
 
 class LandmarkVisualizerPlugin(BasePlugin):
