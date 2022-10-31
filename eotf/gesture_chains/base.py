@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from collections import namedtuple
 
 from eotf.hand import AbstractHandGesture
-
+from eotf.figures import Figure
 
 UpdateOfGestureChain = namedtuple('UpdateOfGestureChain', ['updated', 'consumed_exclusively'])
 
@@ -23,14 +23,14 @@ class AbstractGestureChain(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def send(self, hand_gesture: AbstractHandGesture) -> bool:
+    def send(self, hand) -> bool:
         raise NotImplementedError
 
     @property
     @abstractmethod
-    def result(self):
+    def result(self) -> Figure:
         raise NotImplementedError
 
     @abstractmethod
-    def is_broken(self):
+    def is_broken(self) -> bool:
         raise NotImplementedError

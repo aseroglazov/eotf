@@ -27,7 +27,7 @@ def scale_coordinates_to_full_image(point: Point3D, image_height: int, image_wid
     return Point2D(int(point.x * image_width), int(point.y * image_height))
 
 
-def distance(start, stop):
+def distance(start: Point3D, stop: Point3D) -> float:
     square = (stop.x - start.x) ** 2 + (stop.y - start.y) ** 2 + (stop.z - start.z) ** 2
     if square <= 0:
         return 0

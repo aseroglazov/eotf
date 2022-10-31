@@ -3,9 +3,11 @@ import numpy
 
 from .base import BasePlugin
 from eotf.hand import Hand
-from eotf.settings import IMAGE_WIDTH, IMAGE_HEIGHT
+from eotf.settings import \
+    IMAGE_WIDTH, \
+    IMAGE_HEIGHT
 from eotf.gesture_chains import get_all_chain_types
-
+from eotf.helpers import Scene
 
 ALL_CHAIN_TYPES = get_all_chain_types()
 
@@ -21,7 +23,7 @@ class FingerDrawingPlugin(BasePlugin):
             'left': []
         }
 
-    def deal_with(self, scene):
+    def deal_with(self, scene: Scene) -> Scene:
         for item in scene.detected_objects:
             if isinstance(item, Hand):
                 self._process(item)
@@ -30,7 +32,7 @@ class FingerDrawingPlugin(BasePlugin):
 
         return scene
 
-    def _process(self, hand):
+    def _process(self, hand) -> None:
         consumed_exclusively = False
         for chain in self.active_chains[hand.side]:
             result = chain.send(hand)
@@ -55,14 +57,14 @@ class FingerDrawingPlugin(BasePlugin):
         for chain in completed_chains:
             self.figures_on_canvas.append(chain.result)
 
-    def _draw_on(self, image):
-        def get_mask(contour):
+    def _draw_on(self, image: numpy.ndarray) -> numpy.ndarray:
+        def get_mask(contour: numpy.ndarray) -> numpy.ndarray:
             contour_grey = cv2.cvtColor(contour, cv2.COLOR_BGR2GRAY)
             _, mask = cv2.threshold(contour_grey, 10, 255, cv2.THRESH_BINARY)
 
             return cv2.bitwise_not(mask)
 
-        def join_images(foreground, background):
+        def join_images(foreground: numpy.ndarray, background: numpy.ndarray) -> numpy.ndarray:
             masked_background = cv2.bitwise_and(background, background, mask=get_mask(foreground))
 
             return cv2.add(masked_background, foreground)
@@ -74,5 +76,5 @@ class FingerDrawingPlugin(BasePlugin):
 
         return join_images(canvas, image)
 
-    def close(self):
+    def close(self) -> None:
         self._clean_state()

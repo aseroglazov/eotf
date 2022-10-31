@@ -1,3 +1,6 @@
+from mediapipe.framework.formats.landmark_pb2 import NormalizedLandmarkList
+from mediapipe.python.solutions.hands import HandLandmark
+
 from .finger import Finger
 from .base import \
     AbstractHandGesture, \
@@ -18,7 +21,7 @@ FINGER_OFFSET = {
 
 
 class Hand:
-    def __init__(self, side, landmarks):
+    def __init__(self, side: str, landmarks: NormalizedLandmarkList):
         self.side = side
         self.landmarks = landmarks
 
@@ -28,7 +31,7 @@ class Hand:
         self.ring_finger = Finger(self._get_finger_landmarks('RING_FINGER'))
         self.pinky = Finger(self._get_finger_landmarks('PINKY'))
 
-    def _get_finger_landmarks(self, finger_name):
+    def _get_finger_landmarks(self, finger_name: str) -> list[HandLandmark]:
         finger_landmarks = []
         initial_offset = FINGER_OFFSET[finger_name.upper()]
         for index in range(initial_offset, initial_offset + 4):

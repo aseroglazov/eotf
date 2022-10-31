@@ -1,8 +1,10 @@
 import cv2
 import mediapipe as mp
+from numpy import ndarray
 
 from .base import BasePlugin
 from eotf.hand import Hand
+from eotf.helpers import Scene
 
 
 class HandDetectionPlugin(BasePlugin):
@@ -13,7 +15,7 @@ class HandDetectionPlugin(BasePlugin):
             min_tracking_confidence=0.5
         )
 
-    def _detect_hands(self, image):
+    def _detect_hands(self, image: ndarray) -> list[Hand]:
         detected_hands = []
 
         rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -30,10 +32,10 @@ class HandDetectionPlugin(BasePlugin):
                 )
         return detected_hands
 
-    def deal_with(self, scene):
+    def deal_with(self, scene: Scene) -> Scene:
         scene.detected_objects = self._detect_hands(scene.image)
 
         return scene
 
-    def close(self):
+    def close(self) -> None:
         self.detector.close()

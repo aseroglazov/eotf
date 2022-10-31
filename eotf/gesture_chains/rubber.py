@@ -5,8 +5,11 @@ from .base import \
     UpdateOfGestureChain
 from eotf.hand import \
     AbstractHandGesture, \
-    HandbreadthGesture
-from eotf.figures import EmptyRectangle
+    HandbreadthGesture, \
+    Hand
+from eotf.figures import \
+    EmptyRectangle, \
+    Figure
 
 
 mp_hands = mp.solutions.hands
@@ -19,14 +22,14 @@ class RubberChain(AbstractGestureChain):
         ]
     max_empty_gestures = 10
 
-    def __init__(self, hand) -> None:
+    def __init__(self, hand: Hand) -> None:
         self.received_hands = []
         self.received_hands.append(hand)
         self.quantity_of_empty_gestures = 0
         self.abort_sequence = False
 
     @property
-    def chain(self) -> list:
+    def chain(self) -> list[AbstractHandGesture]:
         return self._chain
 
     @classmethod
@@ -36,7 +39,7 @@ class RubberChain(AbstractGestureChain):
     def is_completed(self) -> bool:
         return len(self.received_hands) == len(self.chain)
 
-    def send(self, hand) -> None:
+    def send(self, hand: Hand) -> UpdateOfGestureChain:
         updated = False
         consumed_exclusively = False
         index = 0
@@ -57,10 +60,10 @@ class RubberChain(AbstractGestureChain):
         return UpdateOfGestureChain(updated, consumed_exclusively)
 
     @property
-    def result(self):
+    def result(self) -> Figure:
         start_point = self.received_hands[0].index_finger.TIP
         end_point = self.received_hands[1].landmarks.landmark[mp_hands.HandLandmark.WRIST]
         return EmptyRectangle(start_point, end_point)
 
-    def is_broken(self):
+    def is_broken(self) -> bool:
         return self.abort_sequence

@@ -1,12 +1,16 @@
 import mediapipe as mp
+from typing import Type
 
 from .base import \
     AbstractGestureChain, \
     UpdateOfGestureChain
-from eotf.figures import Line
+from eotf.figures import \
+    Line, \
+    Figure
 from eotf.hand import \
     AbstractHandGesture, \
-    IndexFingerGesture
+    IndexFingerGesture, \
+    Hand
 
 
 mp_hands = mp.solutions.hands
@@ -26,17 +30,17 @@ class DrawLineChain(AbstractGestureChain):
         self.abort_sequence = False
 
     @property
-    def chain(self) -> list:
+    def chain(self) -> list[Type[AbstractHandGesture]]:
         return self._chain
 
     @classmethod
-    def starts_with(cls, hand_gesture: AbstractHandGesture) -> bool:
+    def starts_with(cls, hand_gesture: Type[AbstractHandGesture]) -> bool:
         return type(hand_gesture) is cls._chain[0]
 
     def is_completed(self) -> bool:
         return len(self.received_hands) == len(self.chain)
 
-    def send(self, hand) -> None:
+    def send(self, hand: Hand) -> UpdateOfGestureChain:
         updated = False
         consumed_exclusively = False
         index = 0
@@ -57,10 +61,10 @@ class DrawLineChain(AbstractGestureChain):
         return UpdateOfGestureChain(updated, consumed_exclusively)
 
     @property
-    def result(self):
+    def result(self) -> Figure:
         start_point = self.received_hands[0].index_finger.TIP
         end_point = self.received_hands[1].index_finger.TIP
         return Line(start_point, end_point)
 
-    def is_broken(self):
+    def is_broken(self) -> bool:
         return self.abort_sequence

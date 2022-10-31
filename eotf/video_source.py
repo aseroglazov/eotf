@@ -1,4 +1,5 @@
 import cv2
+from numpy import ndarray
 
 from eotf.settings import \
     IMAGE_HEIGHT, \
@@ -11,7 +12,7 @@ class VideoSource:
         self.video.set(cv2.CAP_PROP_FRAME_WIDTH, IMAGE_WIDTH)
         self.video.set(cv2.CAP_PROP_FRAME_HEIGHT, IMAGE_HEIGHT)
 
-    def __iter__(self):
+    def __iter__(self) -> ndarray:
         while self.video.isOpened():
             success, image = self.video.read()
             if not success:
@@ -22,5 +23,5 @@ class VideoSource:
                 break
         self.close()
 
-    def close(self):
+    def close(self) -> None:
         self.video.release()
