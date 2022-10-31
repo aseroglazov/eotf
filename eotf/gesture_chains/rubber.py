@@ -1,5 +1,3 @@
-import mediapipe as mp
-
 from .base import \
     AbstractGestureChain, \
     UpdateOfGestureChain
@@ -10,9 +8,6 @@ from eotf.hand import \
 from eotf.figures import \
     EmptyRectangle, \
     Figure
-
-
-mp_hands = mp.solutions.hands
 
 
 class RubberChain(AbstractGestureChain):
@@ -61,8 +56,8 @@ class RubberChain(AbstractGestureChain):
 
     @property
     def result(self) -> Figure:
-        start_point = self.received_hands[0].index_finger.TIP
-        end_point = self.received_hands[1].landmarks.landmark[mp_hands.HandLandmark.WRIST]
+        start_point = self.received_hands[0].structure.index_finger.TIP
+        end_point = self.received_hands[1].structure.wrist
         return EmptyRectangle(start_point, end_point)
 
     def is_broken(self) -> bool:

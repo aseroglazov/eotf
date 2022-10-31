@@ -1,7 +1,9 @@
 from mediapipe.framework.formats.landmark_pb2 import NormalizedLandmarkList
 from mediapipe.python.solutions.hands import HandLandmark
 
-from .finger import Finger
+from .structure import \
+    Finger, \
+    HandStructure
 from .base import \
     AbstractHandGesture, \
     UnknownHandGesture, \
@@ -11,33 +13,11 @@ from .indexfinger import IndexFingerGesture
 from eotf.helpers import get_inheritors
 
 
-FINGER_OFFSET = {
-    'THUMB': 1,
-    'INDEX_FINGER': 5,
-    'MIDDLE_FINGER': 9,
-    'RING_FINGER': 13,
-    'PINKY': 17
-}
-
-
 class Hand:
     def __init__(self, side: str, landmarks: NormalizedLandmarkList):
         self.side = side
         self.landmarks = landmarks
-
-        self.thumb = Finger(self._get_finger_landmarks('THUMB'))
-        self.index_finger = Finger(self._get_finger_landmarks('INDEX_FINGER'))
-        self.middle_finger = Finger(self._get_finger_landmarks('MIDDLE_FINGER'))
-        self.ring_finger = Finger(self._get_finger_landmarks('RING_FINGER'))
-        self.pinky = Finger(self._get_finger_landmarks('PINKY'))
-
-    def _get_finger_landmarks(self, finger_name: str) -> list[HandLandmark]:
-        finger_landmarks = []
-        initial_offset = FINGER_OFFSET[finger_name.upper()]
-        for index in range(initial_offset, initial_offset + 4):
-            finger_landmarks.append(self.landmarks.landmark[index])
-
-        return finger_landmarks
+        self.structure = HandStructure(self.landmarks)
 
     @property
     def gesture(self) -> AbstractHandGesture:
@@ -45,7 +25,7 @@ class Hand:
             return NoHandFound()
 
         for cls in get_inheritors(AbstractHandGesture):
-            if cls.is_shown(self):
+            if cls.is_shown(self.structure):
                 return cls()
 
         return UnknownHandGesture()

@@ -62,8 +62,8 @@ class DrawLineChain(AbstractGestureChain):
 
     @property
     def result(self) -> Figure:
-        start_point = self.received_hands[0].index_finger.TIP
-        end_point = self.received_hands[1].index_finger.TIP
+        start_point = self.received_hands[0].structure.index_finger.TIP
+        end_point = self.received_hands[1].structure.index_finger.TIP
         return Line(start_point, end_point)
 
     def is_broken(self) -> bool:
