@@ -1,7 +1,5 @@
-from mediapipe.python.solutions.hands import HandLandmark
-
 from eotf.helpers import \
-    distance, \
+    get_angle, \
     Point3D
 
 
@@ -19,21 +17,21 @@ class FingerException(Exception):
 
 
 class Finger:
-    def __init__(self, landmarks: list[HandLandmark]):
+    def __init__(self, landmarks: list[Point3D]):
         try:
             self.MCP, self.PIP, self.DIP, self.TIP = landmarks
         except ValueError:
             raise FingerException(f'Wrong format of landmarks. Must be 4 points, got {len(landmarks)}')
 
+    @property
+    def pip_angle(self):
+        return get_angle(self.PIP, self.DIP, self.MCP)
+
     def is_straight(self) -> bool:
-        return distance(self.TIP, self.MCP) \
-               > \
-               distance(self.MCP, self.PIP) + distance(self.PIP, self.DIP)
+        return self.pip_angle > 150
 
     def is_crunched(self) -> bool:
-        return distance(self.TIP, self.MCP) \
-               < \
-               distance(self.MCP, self.PIP) + distance(self.PIP, self.DIP)
+        return self.pip_angle < 150
 
 
 class HandStructure:
