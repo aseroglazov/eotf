@@ -14,6 +14,9 @@ NO_COLOR = (0, 0, 0)
 THICKNESS = 10
 FILL = -1
 
+TEXT_FONT = cv2.FONT_HERSHEY_SIMPLEX
+TEXT_SCALE = 1
+TEXT_THICKNESS = 1
 
 class Figure(ABC):
     @abstractmethod
@@ -56,4 +59,27 @@ class EmptyRectangle(Figure):
             scale_coordinates(self.end_point),
             NO_COLOR,
             FILL
+        )
+
+
+class Text(Figure):
+    def __init__(self, bottom_left_corner_of_text: Point3D, message: str):
+        self.start_point = bottom_left_corner_of_text
+        self.message = message
+
+    def draw_on(self, image: ndarray) -> None:
+        def scale_coordinates(point: Point3D) -> Point2D:
+            image_height, image_width = image.shape[:2]
+            return scale_coordinates_to_full_image(point, image_height, image_width)
+
+        lineType = 2
+        cv2.putText(
+            image,
+            self.message,
+            scale_coordinates(self.start_point),
+            TEXT_FONT,
+            TEXT_SCALE,
+            COLOR,
+            TEXT_THICKNESS,
+            lineType
         )
