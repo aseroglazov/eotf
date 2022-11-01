@@ -1,7 +1,8 @@
 from mediapipe.python.solutions.hands import HandLandmark
-from mediapipe.framework.formats.landmark_pb2 import NormalizedLandmarkList
 
-from eotf.helpers import distance
+from eotf.helpers import \
+    distance, \
+    Point3D
 
 
 FINGER_OFFSET = {
@@ -36,16 +37,16 @@ class Finger:
 
 
 class HandStructure:
-    def __init__(self, landmarks: NormalizedLandmarkList):
+    def __init__(self, landmarks: tuple[Point3D]):
         def finger_landmarks(finger_name: str):
             result = []
             initial_offset = FINGER_OFFSET[finger_name.upper()]
             for index in range(initial_offset, initial_offset + 4):
-                result.append(landmarks.landmark[index])
+                result.append(landmarks[index])
 
             return result
 
-        self.wrist = landmarks.landmark[0]
+        self.wrist = landmarks[0]
 
         self.thumb = Finger(finger_landmarks('THUMB'))
         self.index_finger = Finger(finger_landmarks('INDEX_FINGER'))

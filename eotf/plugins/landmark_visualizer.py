@@ -20,5 +20,5 @@ class LandmarkVisualizerPlugin(BasePlugin):
     def deal_with(self, scene: Scene) -> Scene:
         for item in scene.detected_objects:
             if isinstance(item, Hand):
-                self._visualize_hand_landmarks(scene.image, item.landmarks)
+                self._visualize_hand_landmarks(scene.image, item.raw_landmarks)
         return scene
