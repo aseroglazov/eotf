@@ -25,7 +25,7 @@ class Hand:
     def __init__(self, side: str, landmarks: NormalizedLandmarkList):
         self.side = side
         self.raw_landmarks = landmarks
-        self.landmarks = None
+        self.landmarks = tuple()
         self._initialize_landmarks(landmarks)
         self.structure = HandStructure(self.landmarks)
 
