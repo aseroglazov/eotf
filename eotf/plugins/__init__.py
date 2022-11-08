@@ -4,6 +4,7 @@ from .hand_detection import HandDetectionPlugin
 from .virtual_camera import VirtualCameraPlugin
 from .landmark_visualizer import LandmarkVisualizerPlugin
 from .summary_visualizer import SummaryVisualizerPlugin
+from .debug_visualizer import DebugVisualizerPlugin
 from eotf.helpers import Scene
 
 
@@ -19,6 +20,7 @@ class PluginChain:
 
         if show_landmarks:
             self.active_plugins.append(LandmarkVisualizerPlugin())
+            self.active_plugins.append(DebugVisualizerPlugin())
 
         self.active_plugins.append(FingerDrawingPlugin())
 

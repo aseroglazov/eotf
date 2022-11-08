@@ -83,3 +83,9 @@ class Text(Figure):
             TEXT_THICKNESS,
             lineType
         )
+
+    def __str__(self):
+        return f'{self.message}'
+
+    def __repr__(self):
+        return f'start point: {self.start_point}, message: {self.message}'

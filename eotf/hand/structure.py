@@ -1,3 +1,6 @@
+import logging
+
+from eotf.figures import Text
 from eotf.helpers import \
     get_angle, \
     Point3D
@@ -10,6 +13,10 @@ FINGER_OFFSET = {
     'RING_FINGER': 13,
     'PINKY': 17
 }
+
+
+logger = logging.getLogger(name=__name__)
+logger.propagate = True
 
 
 class FingerException(Exception):
@@ -25,7 +32,9 @@ class Finger:
 
     @property
     def pip_angle(self):
-        return get_angle(self.PIP, self.DIP, self.MCP)
+        angle = get_angle(self.DIP, self.PIP, self.MCP)
+        logger.debug(f'pip angle is %s', Text(bottom_left_corner_of_text=self.PIP, message=f'{int(angle)}'))
+        return angle
 
     def is_straight(self) -> bool:
         return self.pip_angle > 150
