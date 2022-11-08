@@ -1,5 +1,6 @@
 import logging
 
+from .finger import Finger
 from eotf.figures import Text
 from eotf.helpers import \
     get_angle, \
@@ -19,37 +20,12 @@ logger = logging.getLogger(name=__name__)
 logger.propagate = True
 
 
-class FingerException(Exception):
-    pass
-
-
-class Finger:
-    def __init__(self, landmarks: list[Point3D]):
-        try:
-            self.MCP, self.PIP, self.DIP, self.TIP = landmarks
-        except ValueError:
-            raise FingerException(f'Wrong format of landmarks. Must be 4 points, got {len(landmarks)}')
-
-    @property
-    def pip_angle(self):
-        return get_angle(self.DIP, self.PIP, self.MCP)
-
-    def is_straight(self) -> bool:
-        return self.pip_angle > 160
-
-    def is_crunched(self) -> bool:
-        return self.pip_angle < 110
-
-
-class HandStructure:
-    def __init__(self, landmarks: tuple[Point3D]):
+class Hand:
+    def __init__(self, side: str, landmarks: tuple[Point3D]):
         def finger_landmarks(finger_name: str):
-            result = []
-            initial_offset = FINGER_OFFSET[finger_name.upper()]
-            for index in range(initial_offset, initial_offset + 4):
-                result.append(landmarks[index])
+            return self._get_finger_landmarks(finger_name, landmarks)
 
-            return result
+        self.side = side
 
         self.wrist = landmarks[0]
 
@@ -66,6 +42,13 @@ class HandStructure:
                 message=f'{int(self.index_finger.pip_angle)}'
             )
         )
+
+    def _get_finger_landmarks(self, finger_name: str, landmarks: tuple[Point3D]):
+            result = []
+            initial_offset = FINGER_OFFSET[finger_name.upper()]
+            for index in range(initial_offset, initial_offset + 4):
+                result.append(landmarks[index])
+            return result
 
     def knuckles_are_horizontal(self) -> bool:
         imaginary_point_for_horizon = Point3D(

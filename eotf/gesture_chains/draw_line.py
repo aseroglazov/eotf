@@ -10,7 +10,7 @@ from eotf.figures import \
 from eotf.gesture import \
     AbstractHandGesture, \
     DrawingFingerGesture, \
-    Hand
+    DetectedHand
 
 
 mp_hands = mp.solutions.hands
@@ -40,7 +40,7 @@ class DrawLineChain(AbstractGestureChain):
     def is_completed(self) -> bool:
         return len(self.received_hands) == len(self.chain)
 
-    def send(self, hand: Hand) -> UpdateOfGestureChain:
+    def send(self, hand: DetectedHand) -> UpdateOfGestureChain:
         updated = False
         consumed_exclusively = False
         index = 0
@@ -62,8 +62,8 @@ class DrawLineChain(AbstractGestureChain):
 
     @property
     def result(self) -> Figure:
-        start_point = self.received_hands[0].structure.index_finger.TIP
-        end_point = self.received_hands[1].structure.index_finger.TIP
+        start_point = self.received_hands[0].hand.index_finger.TIP
+        end_point = self.received_hands[1].hand.index_finger.TIP
         return Line(start_point, end_point)
 
     def is_broken(self) -> bool:

@@ -1,18 +1,18 @@
 from abc import ABC, abstractmethod
 
-from eotf.gesture.hand_structure import HandStructure
+from eotf.gesture.hand_structure import Hand
 
 
 class AbstractHandGesture(ABC):
     @classmethod
     @abstractmethod
-    def is_shown(cls, hand_structure: HandStructure) -> bool:
+    def is_shown(cls, hand_structure: Hand) -> bool:
         raise NotImplementedError
 
 
 class UnknownHandGesture(AbstractHandGesture):
     @classmethod
-    def is_shown(cls, hand_structure: HandStructure) -> bool:
+    def is_shown(cls, hand_structure: Hand) -> bool:
         return False
 
 

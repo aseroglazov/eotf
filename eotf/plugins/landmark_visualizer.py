@@ -3,7 +3,7 @@ from mediapipe.framework.formats.landmark_pb2 import NormalizedLandmarkList
 from numpy import ndarray
 
 from .base import BasePlugin
-from eotf.gesture import Hand
+from eotf.gesture import DetectedHand
 from eotf.helpers import Scene
 
 
@@ -19,6 +19,6 @@ class LandmarkVisualizerPlugin(BasePlugin):
 
     def deal_with(self, scene: Scene) -> Scene:
         for item in scene.detected_objects:
-            if isinstance(item, Hand):
-                self._visualize_hand_landmarks(scene.image, item.raw_landmarks)
+            if isinstance(item, DetectedHand):
+                self._visualize_hand_landmarks(scene.image, item.landmarks.raw)
         return scene

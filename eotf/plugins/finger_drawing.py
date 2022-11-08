@@ -2,7 +2,7 @@ import cv2
 import numpy
 
 from .base import BasePlugin
-from eotf.gesture import Hand
+from eotf.gesture import DetectedHand
 from eotf.settings import \
     IMAGE_WIDTH, \
     IMAGE_HEIGHT
@@ -25,7 +25,7 @@ class FingerDrawingPlugin(BasePlugin):
 
     def deal_with(self, scene: Scene) -> Scene:
         for item in scene.detected_objects:
-            if isinstance(item, Hand):
+            if isinstance(item, DetectedHand):
                 self._process(item)
 
         scene.image = self._draw_on(scene.image)

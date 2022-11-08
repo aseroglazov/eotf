@@ -3,7 +3,7 @@ import mediapipe as mp
 from numpy import ndarray
 
 from .base import BasePlugin
-from eotf.gesture import Hand
+from eotf.gesture import DetectedHand
 from eotf.helpers import Scene
 
 
@@ -15,7 +15,7 @@ class HandDetectionPlugin(BasePlugin):
             min_tracking_confidence=0.5
         )
 
-    def _detect_hands(self, image: ndarray) -> list[Hand]:
+    def _detect_hands(self, image: ndarray) -> list[DetectedHand]:
         detected_hands = []
 
         rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -25,7 +25,7 @@ class HandDetectionPlugin(BasePlugin):
         if found_hands.multi_handedness:
             for index, hand in enumerate(found_hands.multi_handedness):
                 detected_hands.append(
-                    Hand(
+                    DetectedHand(
                         side=hand.classification[0].label.lower(),
                         landmarks=found_hands.multi_hand_landmarks[index]
                     )
