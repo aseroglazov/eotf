@@ -1,10 +1,5 @@
-import mediapipe as mp
-
 from .base import AbstractHandGesture
 from .structure import HandStructure
-
-
-mp_hands = mp.solutions.hands
 
 
 class DrawingFingerGesture(AbstractHandGesture):
