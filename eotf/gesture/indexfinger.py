@@ -1,5 +1,5 @@
 from .base import AbstractHandGesture
-from .structure import HandStructure
+from eotf.gesture.hand_structure import HandStructure
 
 
 class DrawingFingerGesture(AbstractHandGesture):

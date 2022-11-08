@@ -7,7 +7,7 @@ from .base import \
 from eotf.figures import \
     Line, \
     Figure
-from eotf.hand import \
+from eotf.gesture import \
     AbstractHandGesture, \
     DrawingFingerGesture, \
     Hand

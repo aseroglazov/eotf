@@ -3,7 +3,7 @@ from mediapipe.framework.formats.landmark_pb2 import NormalizedLandmarkList
 from numpy import ndarray
 
 from .base import BasePlugin
-from eotf.hand import Hand
+from eotf.gesture import Hand
 from eotf.helpers import Scene
 
 

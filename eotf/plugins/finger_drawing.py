@@ -2,7 +2,7 @@ import cv2
 import numpy
 
 from .base import BasePlugin
-from eotf.hand import Hand
+from eotf.gesture import Hand
 from eotf.settings import \
     IMAGE_WIDTH, \
     IMAGE_HEIGHT

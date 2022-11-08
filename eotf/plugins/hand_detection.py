@@ -3,7 +3,7 @@ import mediapipe as mp
 from numpy import ndarray
 
 from .base import BasePlugin
-from eotf.hand import Hand
+from eotf.gesture import Hand
 from eotf.helpers import Scene
 
 

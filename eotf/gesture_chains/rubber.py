@@ -1,7 +1,7 @@
 from .base import \
     AbstractGestureChain, \
     UpdateOfGestureChain
-from eotf.hand import \
+from eotf.gesture import \
     AbstractHandGesture, \
     HandbreadthGesture, \
     Hand
