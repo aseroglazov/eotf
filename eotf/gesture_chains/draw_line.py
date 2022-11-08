@@ -9,7 +9,7 @@ from eotf.figures import \
     Figure
 from eotf.hand import \
     AbstractHandGesture, \
-    IndexFingerGesture, \
+    DrawingFingerGesture, \
     Hand
 
 
@@ -18,8 +18,8 @@ mp_hands = mp.solutions.hands
 
 class DrawLineChain(AbstractGestureChain):
     _chain = [
-            IndexFingerGesture,
-            IndexFingerGesture
+            DrawingFingerGesture,
+            DrawingFingerGesture
         ]
     max_empty_gestures = 10
 

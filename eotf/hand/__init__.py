@@ -8,7 +8,7 @@ from .base import \
     UnknownHandGesture, \
     NoHandFound
 from .handbreadth import HandbreadthGesture
-from .indexfinger import IndexFingerGesture
+from .indexfinger import DrawingFingerGesture
 from eotf.helpers import \
     get_inheritors, \
     Point3D

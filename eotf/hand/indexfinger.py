@@ -7,7 +7,7 @@ from .structure import HandStructure
 mp_hands = mp.solutions.hands
 
 
-class IndexFingerGesture(AbstractHandGesture):
+class DrawingFingerGesture(AbstractHandGesture):
     @classmethod
     def is_shown(cls, hand: HandStructure) -> bool:
         return hand.knuckles_are_horizontal() \
