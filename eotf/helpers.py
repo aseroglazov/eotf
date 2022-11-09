@@ -7,7 +7,6 @@ import numpy as np
 
 
 Point3D = namedtuple('Point3D', ['x', 'y', 'z'])
-Point2D = namedtuple('Point2D', ['x', 'y'])
 
 
 def get_inheritors(cls: Type[ABC]) -> set[Type[ABC]]:
@@ -16,10 +15,6 @@ def get_inheritors(cls: Type[ABC]) -> set[Type[ABC]]:
         inheritors.add(subcls)
         inheritors.update(get_inheritors(subcls))
     return inheritors
-
-
-def scale_coordinates_to_full_image(point: Point3D, image_height: int, image_width: int) -> Point2D:
-    return Point2D(int(point.x * image_width), int(point.y * image_height))
 
 
 def distance(start: Point3D, stop: Point3D) -> float:

@@ -1,11 +1,9 @@
 import cv2
 from numpy import ndarray
 from abc import abstractmethod, ABC
+from collections import namedtuple
 
-from eotf.helpers import \
-    Point3D, \
-    Point2D, \
-    scale_coordinates_to_full_image
+from eotf.helpers import Point3D
 
 
 COLOR = (0, 0, 255)
@@ -17,6 +15,14 @@ FILL = -1
 TEXT_FONT = cv2.FONT_HERSHEY_SIMPLEX
 TEXT_SCALE = 1
 TEXT_THICKNESS = 1
+
+
+Point2D = namedtuple('Point2D', ['x', 'y'])
+
+
+def scale_coordinates_to_full_image(point: Point3D, image_height: int, image_width: int) -> Point2D:
+    return Point2D(int(point.x * image_width), int(point.y * image_height))
+
 
 class Figure(ABC):
     @abstractmethod
