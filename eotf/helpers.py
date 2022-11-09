@@ -10,12 +10,6 @@ Point3D = namedtuple('Point3D', ['x', 'y', 'z'])
 Point2D = namedtuple('Point2D', ['x', 'y'])
 
 
-class Scene:
-    def __init__(self, image):
-        self.image = image
-        self.detected_objects = []
-
-
 def get_inheritors(cls: Type[ABC]) -> set[Type[ABC]]:
     inheritors = set()
     for subcls in cls.__subclasses__():

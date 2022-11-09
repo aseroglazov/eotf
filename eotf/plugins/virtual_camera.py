@@ -5,7 +5,7 @@ from eotf.settings import \
     IMAGE_WIDTH, \
     IMAGE_HEIGHT, \
     VIDEO_FPS
-from eotf.helpers import Scene
+from eotf.scene import Scene
 
 
 class VirtualCameraPlugin(BasePlugin):

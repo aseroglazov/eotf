@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from eotf.helpers import Scene
+from eotf.scene import Scene
 
 
 class AbstractPlugin(ABC):

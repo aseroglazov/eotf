@@ -1,5 +1,5 @@
 from .base import BasePlugin
-from eotf.helpers import Scene
+from eotf.scene import Scene
 from eotf.figures import Figure
 
 

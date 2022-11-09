@@ -7,7 +7,7 @@ from eotf.settings import \
     IMAGE_WIDTH, \
     IMAGE_HEIGHT
 from eotf.gesture_chains import get_all_chain_types
-from eotf.helpers import Scene
+from eotf.scene import Scene
 
 ALL_CHAIN_TYPES = get_all_chain_types()
 

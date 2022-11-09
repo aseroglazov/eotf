@@ -1,7 +1,7 @@
 import cv2
 
 from .base import BasePlugin
-from eotf.helpers import Scene
+from eotf.scene import Scene
 
 
 class SummaryVisualizerPlugin(BasePlugin):

@@ -4,7 +4,7 @@ from numpy import ndarray
 
 from .base import BasePlugin
 from eotf.gesture import DetectedHand
-from eotf.helpers import Scene
+from eotf.scene import Scene
 
 
 class LandmarkVisualizerPlugin(BasePlugin):

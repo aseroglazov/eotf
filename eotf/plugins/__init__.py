@@ -5,7 +5,7 @@ from .virtual_camera import VirtualCameraPlugin
 from .landmark_visualizer import LandmarkVisualizerPlugin
 from .summary_visualizer import SummaryVisualizerPlugin
 from .debug_visualizer import DebugVisualizerPlugin
-from eotf.helpers import Scene
+from eotf.scene import Scene
 
 
 class PluginChain:
