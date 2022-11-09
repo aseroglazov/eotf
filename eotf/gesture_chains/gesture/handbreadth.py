@@ -1,5 +1,5 @@
 from .base import AbstractHandGesture
-from eotf.gesture.hand_structure import Hand
+from .hand_structure import Hand
 
 
 class HandbreadthGesture(AbstractHandGesture):

@@ -2,11 +2,12 @@ import cv2
 import numpy
 
 from .base import BasePlugin
-from eotf.gesture import DetectedHand
 from eotf.settings import \
     IMAGE_WIDTH, \
     IMAGE_HEIGHT
-from eotf.gesture_chains import get_all_chain_types
+from eotf.gesture_chains import \
+    get_all_chain_types, \
+    DetectedHand
 from eotf.scene import Scene
 
 ALL_CHAIN_TYPES = get_all_chain_types()

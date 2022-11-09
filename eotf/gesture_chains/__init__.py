@@ -4,7 +4,12 @@ from .base import AbstractGestureChain
 from .draw_line import DrawLineChain
 from .rubber import RubberChain
 from eotf.helpers import get_inheritors
-from eotf.gesture import AbstractHandGesture
+from .gesture import \
+    AbstractHandGesture, \
+    DetectedHand
+
+
+__all__ = ['AbstractGestureChain', 'DrawLineChain', 'RubberChain', 'DetectedHand', 'get_all_chain_types']
 
 
 def get_all_chain_types() -> list[Type[AbstractGestureChain]]:

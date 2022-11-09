@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from collections import namedtuple
 
-from eotf.gesture import AbstractHandGesture
+from .gesture import AbstractHandGesture
 from eotf.figures import Figure
 
 UpdateOfGestureChain = namedtuple('UpdateOfGestureChain', ['updated', 'consumed_exclusively'])

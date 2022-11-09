@@ -3,7 +3,7 @@ import mediapipe as mp
 from numpy import ndarray
 
 from .base import BasePlugin
-from eotf.gesture import DetectedHand
+from eotf.gesture_chains import DetectedHand
 from eotf.scene import Scene
 
 

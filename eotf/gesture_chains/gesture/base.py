@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from eotf.gesture.hand_structure import Hand
+from .hand_structure import Hand
 
 
 class AbstractHandGesture(ABC):

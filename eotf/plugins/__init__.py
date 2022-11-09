@@ -8,6 +8,9 @@ from .debug_visualizer import DebugVisualizerPlugin
 from eotf.scene import Scene
 
 
+__all__ = ['PluginChain']
+
+
 class PluginChain:
     def __init__(self, send_to_virtual_camera: bool = True, show_landmarks: bool = True, show_result: bool = True):
         self.active_plugins = []

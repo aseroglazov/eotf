@@ -1,8 +1,6 @@
 from mediapipe.framework.formats.landmark_pb2 import NormalizedLandmarkList
 
-from eotf.gesture.hand_structure import \
-    Finger, \
-    Hand
+from .hand_structure import Hand
 from .base import \
     AbstractHandGesture, \
     UnknownHandGesture, \
