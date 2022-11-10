@@ -17,6 +17,7 @@ mp_hands = mp.solutions.hands
 
 
 class DrawLineChain(AbstractGestureChain):
+    _priority = 10
     _chain = [
             DrawingFingerGesture,
             DrawingFingerGesture
@@ -32,6 +33,10 @@ class DrawLineChain(AbstractGestureChain):
     @property
     def chain(self) -> list[Type[AbstractHandGesture]]:
         return self._chain
+
+    @classmethod
+    def get_priority(cls) -> int:
+        return cls._priority
 
     @classmethod
     def starts_with(cls, hand_gesture: Type[AbstractHandGesture]) -> bool:

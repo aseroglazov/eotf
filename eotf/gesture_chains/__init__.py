@@ -21,7 +21,7 @@ __all__ = [
 
 
 def get_all_chain_types() -> list[Type[AbstractGestureChain]]:
-    return get_inheritors(AbstractGestureChain)
+    return sorted(get_inheritors(AbstractGestureChain), key=lambda i: i.get_priority())
 
 
 def get_chains_starting_with(hand_gesture: AbstractHandGesture) -> list[AbstractGestureChain]:

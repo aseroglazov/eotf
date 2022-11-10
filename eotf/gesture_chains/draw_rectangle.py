@@ -11,6 +11,7 @@ from eotf.figures import \
 
 
 class DrawRectangleChain(AbstractGestureChain):
+    _priority = 10
     _chain = [
             GripGesture
         ]
@@ -24,6 +25,10 @@ class DrawRectangleChain(AbstractGestureChain):
     @property
     def chain(self) -> list[AbstractHandGesture]:
         return self._chain
+
+    @classmethod
+    def get_priority(cls) -> int:
+        return cls._priority
 
     @classmethod
     def starts_with(cls, hand_gesture: AbstractHandGesture) -> bool:

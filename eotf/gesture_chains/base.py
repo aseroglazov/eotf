@@ -15,6 +15,11 @@ class AbstractGestureChain(ABC):
 
     @classmethod
     @abstractmethod
+    def get_priority(cls) -> int:
+        raise NotImplementedError
+
+    @classmethod
+    @abstractmethod
     def starts_with(cls, hand_gesture: AbstractHandGesture) -> bool:
         raise NotImplementedError
 
