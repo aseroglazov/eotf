@@ -4,6 +4,7 @@ from .base import AbstractGestureChain
 from .draw_line import DrawLineChain
 from .rubber import RubberChain
 from .draw_rectangle import DrawRectangleChain
+from .move_rectangle import MoveRectangleChain
 from eotf.helpers import get_inheritors
 from .gesture import \
     AbstractHandGesture, \
@@ -16,6 +17,7 @@ __all__ = [
     'RubberChain',
     'DetectedHand',
     'DrawRectangleChain',
+    'MoveRectangleChain',
     'get_all_chain_types'
 ]
 

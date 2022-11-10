@@ -69,9 +69,10 @@ class EmptyRectangle(Figure):
 
 
 class ContourRectangle(Figure):
-    def __init__(self, start_point: Point3D, end_point: Point3D):
+    def __init__(self, start_point: Point3D, end_point: Point3D, color: tuple[int] = COLOR):
         self.start_point = start_point
         self.end_point = end_point
+        self.color = color
 
     def draw_on(self, image: ndarray) -> None:
         def scale_coordinates(point: Point3D) -> Point2D:
@@ -82,7 +83,7 @@ class ContourRectangle(Figure):
             image,
             scale_coordinates(self.start_point),
             scale_coordinates(self.end_point),
-            COLOR,
+            self.color,
             THICKNESS
         )
 
