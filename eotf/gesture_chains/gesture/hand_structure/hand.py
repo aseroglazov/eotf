@@ -65,3 +65,10 @@ class Hand:
             )
         )
         return angle < 45
+
+    def handbreadth_is_down(self) -> bool:
+        logger.debug(f'hand is %s', self.side)
+        if self.pinky.MCP.x > self.index_finger.MCP.x:
+            return self.side == 'right'
+        else:
+            return self.side == 'left'

@@ -22,4 +22,5 @@ class Finger:
         return self.pip_angle > 160
 
     def is_crunched(self) -> bool:
+        #TODO: Deal with situation when fingers are crunched, but looks directly to camera. Angle is calculated wrong
         return self.pip_angle < 110
