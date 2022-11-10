@@ -8,6 +8,7 @@ from .gesture import \
 from eotf.figures import \
     ContourRectangle, \
     Figure
+from eotf.helpers import Point3D
 
 
 class DrawRectangleChain(AbstractGestureChain):
@@ -55,7 +56,11 @@ class DrawRectangleChain(AbstractGestureChain):
     @property
     def result(self) -> Figure:
         start_point = self.received_hands[0].hand.thumb.TIP
-        end_point = self.received_hands[0].hand.pinky.TIP
+        end_point = Point3D(
+            x=self.received_hands[0].hand.pinky.TIP.x,
+            y=self.received_hands[0].hand.middle_finger.TIP.y,
+            z=self.received_hands[0].hand.pinky.TIP.z
+        )
         return ContourRectangle(start_point, end_point)
 
     def is_broken(self) -> bool:
