@@ -1,7 +1,6 @@
 from .base import BasePlugin
 from .finger_drawing import FingerDrawingPlugin
 from .hand_detection import HandDetectionPlugin
-from .virtual_camera import VirtualCameraPlugin
 from .landmark_visualizer import LandmarkVisualizerPlugin
 from .summary_visualizer import SummaryVisualizerPlugin
 from .debug_visualizer import DebugVisualizerPlugin
