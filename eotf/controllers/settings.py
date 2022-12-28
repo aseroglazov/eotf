@@ -1,0 +1,2 @@
+COLOR = (0, 0, 255)
+THICKNESS = 10
